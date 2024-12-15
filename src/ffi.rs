@@ -843,9 +843,9 @@ impl Car {
     }
     #[inline]
     pub unsafe fn new() -> Self {
-        let mut __bindgen_tmp = ::std::mem::uninitialized();
-        Car_Car(&mut __bindgen_tmp);
-        __bindgen_tmp
+        let mut __bindgen_tmp = ::std::mem::MaybeUninit::uninit();
+        Car_Car(__bindgen_tmp.as_mut_ptr());
+        __bindgen_tmp.assume_init()
     }
 }
 extern "C" {

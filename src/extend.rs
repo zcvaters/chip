@@ -1,46 +1,56 @@
 use na::{Matrix3, Point3, RealField, Vector3};
 
 pub trait ToFromC<T> {
-    fn from_c(T) -> Self;
+    fn from_c(x: T) -> Self;
     fn to_c(&self) -> T;
 }
 
 impl<N: RealField> ToFromC<[N; 3]> for Vector3<N> {
     fn from_c(x: [N; 3]) -> Self {
-        Vector3::new(x[0], x[1], x[2])
+        Vector3::new(x[0].clone(), x[1].clone(), x[2].clone())
     }
 
     fn to_c(&self) -> [N; 3] {
-        [self.x, self.y, self.z]
+        [self.x.clone(), self.y.clone(), self.z.clone()]
     }
 }
 
 impl<N: RealField> ToFromC<[N; 3]> for Point3<N> {
     fn from_c(x: [N; 3]) -> Self {
-        Point3::new(x[0], x[1], x[2])
+        Point3::new(x[0].clone(), x[1].clone(), x[2].clone())
     }
 
     fn to_c(&self) -> [N; 3] {
-        [self.x, self.y, self.z]
+        [self.x.clone(), self.y.clone(), self.z.clone()]
     }
 }
 
 impl<N: RealField> ToFromC<[N; 9]> for Matrix3<N> {
     fn from_c(x: [N; 9]) -> Self {
-        Matrix3::new(x[0], x[1], x[2], x[3], x[4], x[5], x[6], x[7], x[8])
+        Matrix3::new(
+            x[0].clone(),
+            x[1].clone(),
+            x[2].clone(),
+            x[3].clone(),
+            x[4].clone(),
+            x[5].clone(),
+            x[6].clone(),
+            x[7].clone(),
+            x[8].clone(),
+        )
     }
 
     fn to_c(&self) -> [N; 9] {
         [
-            self[(0, 0)],
-            self[(0, 1)],
-            self[(0, 2)],
-            self[(1, 0)],
-            self[(1, 1)],
-            self[(1, 2)],
-            self[(2, 0)],
-            self[(2, 1)],
-            self[(2, 2)],
+            self[(0, 0)].clone(),
+            self[(0, 1)].clone(),
+            self[(0, 2)].clone(),
+            self[(1, 0)].clone(),
+            self[(1, 1)].clone(),
+            self[(1, 2)].clone(),
+            self[(2, 0)].clone(),
+            self[(2, 1)].clone(),
+            self[(2, 2)].clone(),
         ]
     }
 }
